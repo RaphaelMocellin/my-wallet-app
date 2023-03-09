@@ -1,9 +1,68 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { submitEmail } from '../redux/actions';
 
 class Login extends React.Component {
+  state = {
+    emailInput: '',
+    passwordInput: '',
+  };
+
   render() {
-    return <div>Login</div>;
+    const { emailInput, passwordInput } = this.state;
+    const { history, dispatch } = this.props;
+
+    const onChangeHandler = ({ target }) => {
+      const { name, value } = target;
+      this.setState({
+        [name]: value,
+      });
+    };
+
+    const pswMinLeng = 5;
+    const validRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const btnDisabled = passwordInput.length > pswMinLeng && emailInput.match(validRegex);
+
+    return (
+      <form
+        onSubmit={ (e) => {
+          e.preventDefault();
+
+          dispatch(submitEmail(emailInput));
+          history.push('/carteira');
+        } }
+      >
+        <input
+          type="email"
+          name="emailInput"
+          value={ emailInput }
+          onChange={ onChangeHandler }
+          data-testid="email-input"
+        />
+        <input
+          type="password"
+          name="passwordInput"
+          value={ passwordInput }
+          onChange={ onChangeHandler }
+          data-testid="password-input"
+        />
+        <button
+          disabled={ !btnDisabled }
+        >
+          Entrar
+
+        </button>
+      </form>
+    );
   }
 }
 
-export default Login;
+Login.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+export default connect()(Login);
