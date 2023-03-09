@@ -1,6 +1,8 @@
 export const SUBMIT_EMAIL = 'SUBMIT_EMAIL';
 export const CURRENCIES_REQUEST_SUCCESSFUL = 'CURRENCIES_REQUEST_SUCCESSFUL';
 // export const CURRENCIES_REQUEST_FAILED = 'CURRENCIES_REQUEST_FAILED';
+export const EXPENSE_REQUEST_SUCCESSFUL = 'EXPENSE_REQUEST_SUCCESSFUL';
+export const EXPENSE_TOTAL_CALC = 'EXPENSE_TOTAL_CALC';
 
 const submitEmail = (email) => ({
   type: SUBMIT_EMAIL,
@@ -17,6 +19,15 @@ const currenciesRequestSuccessful = (currencies) => ({
 //   payload: error,
 // });
 
+const expenseRequestSuccessful = (newExpense) => ({
+  type: EXPENSE_REQUEST_SUCCESSFUL,
+  payload: newExpense,
+});
+
+const expenseTotalCalc = () => ({
+  type: EXPENSE_TOTAL_CALC,
+});
+
 const fetchCurrencies = () => async (dispatch) => {
   const response = await fetch('https://economia.awesomeapi.com.br/json/all');
   const rawCurrencies = await response.json();
@@ -25,4 +36,28 @@ const fetchCurrencies = () => async (dispatch) => {
   dispatch(currenciesRequestSuccessful(currencies));
 };
 
-export { submitEmail, fetchCurrencies };
+const fetchExpense = (expenseInfo) => async (dispatch) => {
+  const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const rawCurrencies = await response.json();
+
+  const { expenseValue,
+    expenseDescription,
+    expenseCurrency,
+    expenseMethod,
+    expenseTag,
+    expenses } = expenseInfo;
+
+  const newExpense = {
+    id: expenses.length,
+    value: expenseValue,
+    description: expenseDescription,
+    currency: expenseCurrency,
+    method: expenseMethod,
+    tag: expenseTag,
+    exchangeRates: rawCurrencies,
+  };
+  dispatch(expenseRequestSuccessful(newExpense));
+  dispatch(expenseTotalCalc());
+};
+
+export { submitEmail, fetchCurrencies, fetchExpense };
