@@ -3,6 +3,7 @@ export const CURRENCIES_REQUEST_SUCCESSFUL = 'CURRENCIES_REQUEST_SUCCESSFUL';
 // export const CURRENCIES_REQUEST_FAILED = 'CURRENCIES_REQUEST_FAILED';
 export const EXPENSE_REQUEST_SUCCESSFUL = 'EXPENSE_REQUEST_SUCCESSFUL';
 export const EXPENSE_TOTAL_CALC = 'EXPENSE_TOTAL_CALC';
+export const EXPENSE_DELETE = 'EXPENSE_DELETE';
 
 const submitEmail = (email) => ({
   type: SUBMIT_EMAIL,
@@ -60,4 +61,14 @@ const fetchExpense = (expenseInfo) => async (dispatch) => {
   dispatch(expenseTotalCalc());
 };
 
-export { submitEmail, fetchCurrencies, fetchExpense };
+const expenseDelete = (id) => ({
+  type: EXPENSE_DELETE,
+  payload: id,
+});
+
+const expenseDeleteProtocol = (id) => (dispatch) => {
+  dispatch(expenseDelete(id));
+  dispatch(expenseTotalCalc());
+};
+
+export { submitEmail, fetchCurrencies, fetchExpense, expenseDeleteProtocol };
