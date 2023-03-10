@@ -4,6 +4,8 @@ export const CURRENCIES_REQUEST_SUCCESSFUL = 'CURRENCIES_REQUEST_SUCCESSFUL';
 export const EXPENSE_REQUEST_SUCCESSFUL = 'EXPENSE_REQUEST_SUCCESSFUL';
 export const EXPENSE_TOTAL_CALC = 'EXPENSE_TOTAL_CALC';
 export const EXPENSE_DELETE = 'EXPENSE_DELETE';
+export const EXPENSE_EDIT = 'EXPENSE_EDIT';
+export const EXPENSE_EDITOR = 'EXPENSE_EDITOR';
 
 const submitEmail = (email) => ({
   type: SUBMIT_EMAIL,
@@ -71,4 +73,24 @@ const expenseDeleteProtocol = (id) => (dispatch) => {
   dispatch(expenseTotalCalc());
 };
 
-export { submitEmail, fetchCurrencies, fetchExpense, expenseDeleteProtocol };
+const expenseEditor = (id) => ({
+  type: EXPENSE_EDITOR,
+  payload: id,
+});
+
+const expenseEdit = (info) => ({
+  type: EXPENSE_EDIT,
+  payload: info,
+});
+
+const expenseEditProtocol = (info) => (dispatch) => {
+  dispatch(expenseEdit(info));
+  dispatch(expenseTotalCalc());
+};
+
+export { submitEmail,
+  fetchCurrencies,
+  fetchExpense,
+  expenseDeleteProtocol,
+  expenseEditProtocol,
+  expenseEditor };

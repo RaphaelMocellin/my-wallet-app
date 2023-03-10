@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { expenseDeleteProtocol } from '../redux/actions';
+import { expenseDeleteProtocol, expenseEditor } from '../redux/actions';
 
 class Table extends Component {
   render() {
@@ -53,7 +53,12 @@ class Table extends Component {
                       >
                         Excluir
                       </button>
-
+                      <button
+                        onClick={ () => dispatch(expenseEditor(exp.id)) }
+                        data-testid="edit-btn"
+                      >
+                        Edit
+                      </button>
                     </td>
                   </tr>
                 );

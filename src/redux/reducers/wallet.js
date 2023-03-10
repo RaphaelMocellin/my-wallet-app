@@ -2,7 +2,9 @@
 import { CURRENCIES_REQUEST_SUCCESSFUL,
   EXPENSE_REQUEST_SUCCESSFUL,
   EXPENSE_TOTAL_CALC,
-  EXPENSE_DELETE } from '../actions';
+  EXPENSE_DELETE,
+  EXPENSE_EDITOR,
+  EXPENSE_EDIT } from '../actions';
 
 const INITIAL_STATE = {
   expenseTotal: 0,
@@ -11,6 +13,18 @@ const INITIAL_STATE = {
   editor: false, // valor booleano que indica de uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
 };
+
+const updateExpenseInfo = (expArray, payload) => expArray.reduce((acc, cur) => {
+  if (cur.id === payload.idToEdit) {
+    cur.value = payload.expenseValue;
+    cur.description = payload.expenseDescription;
+    cur.currency = payload.expenseCurrency;
+    cur.method = payload.expenseMethod;
+    cur.tag = payload.expenseTag;
+  }
+  acc.push(cur);
+  return acc;
+}, []);
 
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -33,7 +47,6 @@ const wallet = (state = INITIAL_STATE, action) => {
         const { value, exchangeRates, currency } = cur;
         const realCurrency = exchangeRates[currency];
         const finalValue = value * realCurrency.ask;
-        // console.log(finalValue);
         return acc + finalValue;
       }, 0),
     };
@@ -42,6 +55,20 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses.filter((exp) => exp.id !== action.payload)],
+    };
+  }
+  case EXPENSE_EDITOR: {
+    return {
+      ...state,
+      editor: true,
+      idToEdit: action.payload,
+    };
+  }
+  case EXPENSE_EDIT: {
+    return {
+      ...state,
+      editor: false,
+      expenses: [...updateExpenseInfo(state.expenses, action.payload)],
     };
   }
   default:
