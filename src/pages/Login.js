@@ -33,20 +33,28 @@ class Login extends React.Component {
           history.push('/carteira');
         } }
       >
-        <input
-          type="email"
-          name="emailInput"
-          value={ emailInput }
-          onChange={ onChangeHandler }
-          data-testid="email-input"
-        />
-        <input
-          type="password"
-          name="passwordInput"
-          value={ passwordInput }
-          onChange={ onChangeHandler }
-          data-testid="password-input"
-        />
+        <label htmlFor="emailInput">
+          Email:
+          <input
+            id="emailInput"
+            type="email"
+            name="emailInput"
+            value={ emailInput }
+            onChange={ onChangeHandler }
+            data-testid="email-input"
+          />
+        </label>
+        <label htmlFor="passwordInput">
+          Password:
+          <input
+            id="passwordInput"
+            type="password"
+            name="passwordInput"
+            value={ passwordInput }
+            onChange={ onChangeHandler }
+            data-testid="password-input"
+          />
+        </label>
         <button
           disabled={ !btnDisabled }
         >
