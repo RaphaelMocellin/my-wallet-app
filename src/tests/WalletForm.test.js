@@ -38,37 +38,30 @@ describe('Testando o componente WalletForm', () => {
     };
     const { store } = renderWithRouterAndRedux(<App />, { initialState, initialEntries });
 
-    // const TEST_EMAIL = 'teste@teste.com';
-    // const TEST_PASSWORD = '123456';
-
-    // const emailInput = screen.getByLabelText('Email:');
-    // const passwordInput = screen.getByLabelText('Password:');
-    // const entrarBtn = screen.getByRole('button');
-
-    // userEvent.type(emailInput, TEST_EMAIL);
-    // userEvent.type(passwordInput, TEST_PASSWORD);
-    // userEvent.click(entrarBtn);
-
     expect(store.getState().wallet.currencies).toHaveLength(15);
   });
 
   //   test('Saber se atualiza o estado global corretamente', () => {
-  //     renderWithRedux(<App />);
-
-  //     const TEST_EMAIL = 'teste@teste.com';
-  //     const TEST_PASSWORD = '123456';
-
-  //     const emailInput = screen.getByLabelText('Email:');
-  //     const passwordInput = screen.getByLabelText('Password:');
-  //     const entrarBtn = screen.getByRole('button');
-
-  //     userEvent.type(emailInput, TEST_EMAIL);
-  //     userEvent.type(passwordInput, TEST_PASSWORD);
-  //     userEvent.click(entrarBtn);
+  //     const initialEntries = ['/carteira'];
+  //     const initialState = {
+  //       user: {
+  //         email: 'teste@teste.com',
+  //       },
+  //       wallet: {
+  //         expenseTotal: 0,
+  //         currencies: ['USD', 'CAD', 'GBP', 'ARS', 'BTC', 'LTC', 'EUR', 'JPY', 'CHF', 'AUD', 'CNY', 'ILS', 'ETH', 'XRP', 'DOGE'],
+  //         expenses: [],
+  //       },
+  //     };
+  //     const { store } = renderWithRouterAndRedux(<App />, { initialState, initialEntries });
 
   //     const expenseValue = screen.getByLabelText('Valor:');
   //     const expenseDescription = screen.getByLabelText('Descrição:');
   //     const addBtn = screen.getByRole('button');
+
+  //     expect(expenseValue).toBeInTheDocument();
+  //     expect(expenseDescription).toBeInTheDocument();
+  //     expect(addBtn).toBeInTheDocument();
 
   //     userEvent.type(expenseValue, 10);
   //     userEvent.type(expenseDescription, 'descrição teste');
