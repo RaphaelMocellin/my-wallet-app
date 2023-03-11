@@ -36,13 +36,7 @@ class Table extends Component {
                     <td>{exp.tag}</td>
                     <td>{exp.method}</td>
                     <td>{Number(exp.value).toFixed(2)}</td>
-                    <td>
-                      {
-                        exp.currency === 'USD'
-                          ? 'Dólar Americano/Real Brasileiro' : 'Euro/Real Brasileiro'
-                      }
-
-                    </td>
+                    <td>{exp.exchangeRates[exp.currency].name}</td>
                     <td>{fixedRate}</td>
                     <td>{fixedConvertedRate}</td>
                     <td>Real</td>

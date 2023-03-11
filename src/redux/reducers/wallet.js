@@ -21,8 +21,10 @@ const updateExpenseInfo = (expArray, payload) => expArray.reduce((acc, cur) => {
     cur.currency = payload.expenseCurrency;
     cur.method = payload.expenseMethod;
     cur.tag = payload.expenseTag;
+    acc.push(cur);
+  } else {
+    acc.push(cur);
   }
-  acc.push(cur);
   return acc;
 }, []);
 

@@ -13,10 +13,15 @@ class WalletForm extends Component {
   };
 
   async componentDidMount() {
-    const { dispatch, editor, idToEdit, expenses } = this.props;
+    const { dispatch } = this.props;
     dispatch(fetchCurrencies());
-    if (editor) {
-      console.log('entrei');
+  }
+
+  componentDidUpdate() {
+    const { expenseValue, expenseDescription } = this.state;
+    const { editor, idToEdit, expenses } = this.props;
+    if (editor && !expenseValue && !expenseDescription) {
+      // console.log('Deu update');
       const { value, description, currency, method, tag } = expenses
         .find((exp) => exp.id === idToEdit);
       this.setState({
@@ -48,8 +53,13 @@ class WalletForm extends Component {
       idToEdit,
     };
 
-    const onClickHandler = () => {
+    const onClickHandler = (e) => {
+      e.preventDefault();
       dispatch(expenseEditProtocol(expenseInfo));
+      this.setState({
+        expenseValue: '',
+        expenseDescription: '',
+      });
     };
 
     const onChangeHandler = ({ target }) => {
@@ -63,6 +73,7 @@ class WalletForm extends Component {
       <form
         onSubmit={ (e) => {
           e.preventDefault();
+          console.log('Happened');
           dispatch(fetchExpense(expenseInfo));
           this.setState({
             expenseValue: '',
@@ -141,7 +152,7 @@ class WalletForm extends Component {
         {
           editor
             ? <button type="button" onClick={ onClickHandler }>Editar despesa</button>
-            : <button>Adicionar Despesa</button>
+            : <button type="submit">Adicionar Despesa</button>
         }
       </form>
     );
