@@ -72,6 +72,10 @@ class Login extends React.Component {
           </fieldset>
           <button
             disabled={ !btnDisabled }
+            className="bg-blue-500
+            w-1/2 p-1 rounded-lg drop-shadow-xl mt-3 font-semibold
+            hover:bg-blue-800 hover:text-white
+            disabled:bg-gray-500 disabled:hover:text-black"
           >
             Entrar
 
