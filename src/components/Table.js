@@ -8,10 +8,10 @@ class Table extends Component {
     const { expenses, dispatch } = this.props;
 
     return (
-      <div>
-        <table>
+      <div className="flex bg-stone-400 rounded-xl px-2 w-5/6 my-12">
+        <table className="flex flex-col bg-stone-400 rounded-xl px-2 w-full">
           <thead>
-            <tr>
+            <tr className="flex justify-between">
               <th>Descrição</th>
               <th>Tag</th>
               <th>Método de pagamento</th>
@@ -31,7 +31,10 @@ class Table extends Component {
                   exp.value * exp.exchangeRates[exp.currency].ask,
                 ).toFixed(2);
                 return (
-                  <tr key={ exp.id }>
+                  <tr
+                    className="flex justify-between"
+                    key={ exp.id }
+                  >
                     <td>{exp.description}</td>
                     <td>{exp.tag}</td>
                     <td>{exp.method}</td>

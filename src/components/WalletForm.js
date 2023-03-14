@@ -70,6 +70,7 @@ class WalletForm extends Component {
 
     return (
       <form
+        className="bg-white px-10 py-6 rounded-2xl shadow-xl text-center"
         onSubmit={ (e) => {
           e.preventDefault();
           dispatch(fetchExpense(expenseInfo));
@@ -88,6 +89,7 @@ class WalletForm extends Component {
             value={ expenseValue }
             onChange={ onChangeHandler }
             data-testid="value-input"
+            className="bg-black rounded text-white  mt-1 m-2"
           />
         </label>
         <label htmlFor="expenseDescription">
@@ -99,6 +101,7 @@ class WalletForm extends Component {
             value={ expenseDescription }
             onChange={ onChangeHandler }
             data-testid="description-input"
+            className="bg-black rounded text-white  mt-1 m-2"
           />
         </label>
         <label htmlFor="expenseCurrency">
@@ -109,6 +112,7 @@ class WalletForm extends Component {
             value={ expenseCurrency }
             onChange={ onChangeHandler }
             data-testid="currency-input"
+            className="bg-black rounded text-white  mt-1 m-2"
           >
             {
               currencies.map((currency) => (
@@ -125,6 +129,7 @@ class WalletForm extends Component {
             value={ expenseMethod }
             onChange={ onChangeHandler }
             data-testid="method-input"
+            className="bg-black rounded text-white  mt-1 m-2"
           >
             <option value="Dinheiro">Dinheiro</option>
             <option value="Cartão de crédito">Cartão de crédito</option>
@@ -139,6 +144,7 @@ class WalletForm extends Component {
             value={ expenseTag }
             onChange={ onChangeHandler }
             data-testid="tag-input"
+            className="bg-black rounded text-white  mt-1 m-2"
           >
             <option value="Alimentação">Alimentação</option>
             <option value="Lazer">Lazer</option>
@@ -149,8 +155,29 @@ class WalletForm extends Component {
         </label>
         {
           editor
-            ? <button type="button" onClick={ onClickHandler }>Editar despesa</button>
-            : <button type="submit">Adicionar Despesa</button>
+            ? (
+              <button
+                className="bg-blue-500 p-3
+            rounded-lg drop-shadow-xl ml-6 font-semibold
+          hover:bg-blue-800 hover:text-white"
+                type="button"
+                onClick={ onClickHandler }
+              >
+                Editar despesa
+
+              </button>
+            )
+            : (
+              <button
+                className="bg-blue-500 p-3
+              rounded-lg drop-shadow-xl ml-6 font-semibold
+            hover:bg-blue-800 hover:text-white"
+                type="submit"
+              >
+                Adicionar Despesa
+
+              </button>
+            )
         }
       </form>
     );

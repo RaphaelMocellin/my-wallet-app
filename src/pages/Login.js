@@ -25,7 +25,7 @@ class Login extends React.Component {
     const btnDisabled = passwordInput.length > pswMinLeng && emailInput.match(validRegex);
 
     return (
-      <div className=" flex items-center justify-center bg-stone-200 min-h-screen">
+      <div className="flex items-center justify-center bg-stone-200 min-h-screen">
         <form
           className="bg-white px-16 py-12 rounded-2xl shadow-xl text-center"
           onSubmit={ (e) => {
