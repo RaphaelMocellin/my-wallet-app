@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import Wallet from '../pages/Wallet';
@@ -28,36 +28,20 @@ describe('Testando a página de Wallet', () => {
   });
 
   test('Teste se o fetch carregou as currencies no didMount', async () => {
-    const initialState = {
-      user: {
-        email: 'teste@teste.com',
-      },
-      wallet: {
-        expenseTotal: 0,
-        currencies: [],
-        expenses: [],
-        editor: false,
-        idToEdit: 0,
-      },
-    };
-
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
       json: jest.fn().mockResolvedValue(mockData),
     });
 
-    renderWithRedux(<Wallet />, { initialState });
+    renderWithRedux(<Wallet />);
 
     expect(global.fetch).toBeCalledTimes(1);
 
     const currInput = await screen.findByLabelText('Moeda:');
-    expect(currInput).toBeInTheDocument();
-    // expect(store.getState().wallet.currencies).toHaveLength(15);
+    expect(currInput).toBeVisible();
   });
 
   test('Teste se adiciona uma expense corretamente no estado global', async () => {
-    // currencies: ['USD', 'CAD', 'GBP', 'ARS', 'BTC', 'LTC', 'EUR', 'JPY', 'CHF', 'AUD', 'CNY', 'ILS', 'ETH', 'XRP', 'DOGE'],
-
     const initialState = {
       user: {
         email: 'teste@teste.com',
@@ -85,7 +69,7 @@ describe('Testando a página de Wallet', () => {
     const expenseDescription = screen.getByLabelText(descriptionTxt);
     const addBtn = screen.getByRole('button');
 
-    userEvent.type(expenseValue, 10);
+    userEvent.type(expenseValue, '10');
     userEvent.type(expenseDescription, 'Teste');
     userEvent.click(addBtn);
 
@@ -132,7 +116,6 @@ describe('Testando a página de Wallet', () => {
     const expenseDescription = await screen.findByLabelText(descriptionTxt);
     expect(expenseDescription).toBeInTheDocument();
 
-    // userEvent.clear(expenseValue);
     userEvent.type(expenseDescription, '1');
 
     const editExpBtn = screen.getByRole('button', { name: 'Editar despesa' });

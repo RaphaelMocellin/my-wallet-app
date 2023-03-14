@@ -13,7 +13,4 @@ function App() {
   );
 }
 
-// const mapStateToProps = () => ({
-// });
-
 export default connect()(App);

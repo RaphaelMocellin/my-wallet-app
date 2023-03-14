@@ -21,7 +21,6 @@ class WalletForm extends Component {
     const { expenseValue, expenseDescription } = this.state;
     const { editor, idToEdit, expenses } = this.props;
     if (editor && !expenseValue && !expenseDescription) {
-      // console.log('Deu update');
       const { value, description, currency, method, tag } = expenses
         .find((exp) => exp.id === idToEdit);
       this.setState({
@@ -73,7 +72,6 @@ class WalletForm extends Component {
       <form
         onSubmit={ (e) => {
           e.preventDefault();
-          console.log('Happened');
           dispatch(fetchExpense(expenseInfo));
           this.setState({
             expenseValue: '',

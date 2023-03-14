@@ -1,13 +1,12 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithRedux, renderWithRouterAndRedux } from './helpers/renderWith';
+import { renderWithRouterAndRedux } from './helpers/renderWith';
 import App from '../App';
-import Login from '../pages/Login';
 
 describe('Testando a página de login', () => {
   test('Saber se há 2 inputs na página', () => {
-    renderWithRedux(<Login />);
+    renderWithRouterAndRedux(<App />);
 
     const emailInput = screen.getByLabelText('Email:');
     expect(emailInput).toBeInTheDocument();
@@ -17,7 +16,7 @@ describe('Testando a página de login', () => {
   });
 
   test('Saber se há um button Entrar na página e se está disabled incialmente', () => {
-    renderWithRedux(<Login />);
+    renderWithRouterAndRedux(<App />);
 
     const entrarBtn = screen.getByRole('button');
     expect(entrarBtn).toBeInTheDocument();
@@ -25,7 +24,7 @@ describe('Testando a página de login', () => {
   });
 
   test('Teste se botão fica enabled após inserir dados', () => {
-    renderWithRedux(<Login />);
+    renderWithRouterAndRedux(<App />);
 
     const emailInput = screen.getByLabelText('Email:');
     const passwordInput = screen.getByLabelText('Password:');
