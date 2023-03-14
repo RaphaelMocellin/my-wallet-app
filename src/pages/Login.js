@@ -25,43 +25,59 @@ class Login extends React.Component {
     const btnDisabled = passwordInput.length > pswMinLeng && emailInput.match(validRegex);
 
     return (
-      <form
-        onSubmit={ (e) => {
-          e.preventDefault();
+      <div className=" flex items-center justify-center bg-stone-200 min-h-screen">
+        <form
+          className="bg-white px-16 py-12 rounded-2xl shadow-xl text-center"
+          onSubmit={ (e) => {
+            e.preventDefault();
 
-          dispatch(submitEmail(emailInput));
-          history.push('/carteira');
-        } }
-      >
-        <label htmlFor="emailInput">
-          Email:
-          <input
-            id="emailInput"
-            type="email"
-            name="emailInput"
-            value={ emailInput }
-            onChange={ onChangeHandler }
-            data-testid="email-input"
-          />
-        </label>
-        <label htmlFor="passwordInput">
-          Password:
-          <input
-            id="passwordInput"
-            type="password"
-            name="passwordInput"
-            value={ passwordInput }
-            onChange={ onChangeHandler }
-            data-testid="password-input"
-          />
-        </label>
-        <button
-          disabled={ !btnDisabled }
+            dispatch(submitEmail(emailInput));
+            history.push('/carteira');
+          } }
         >
-          Entrar
+          <h1 className="text-5xl mb-6 text-blue-500">My Wallet Login</h1>
+          <fieldset>
+            <label
+              htmlFor="emailInput"
+              className="font-semibold"
+            >
+              Email
+              <input
+                id="emailInput"
+                type="email"
+                name="emailInput"
+                value={ emailInput }
+                onChange={ onChangeHandler }
+                data-testid="email-input"
+                className="w-full bg-black p-1 rounded text-white  mt-1 mb-3"
+              />
+            </label>
+          </fieldset>
+          <fieldset>
+            <label
+              htmlFor="passwordInput"
+              className="font-semibold"
+            >
+              Password
+              <input
+                id="passwordInput"
+                type="password"
+                name="passwordInput"
+                value={ passwordInput }
+                onChange={ onChangeHandler }
+                data-testid="password-input"
+                className="w-full bg-black p-1 rounded text-white mt-1 mb-3"
+              />
+            </label>
+          </fieldset>
+          <button
+            disabled={ !btnDisabled }
+          >
+            Entrar
 
-        </button>
-      </form>
+          </button>
+        </form>
+      </div>
     );
   }
 }
