@@ -9,7 +9,7 @@ class Wallet extends React.Component {
       <div className="flex flex-col items-center bg-stone-200 min-h-screen">
         <h2
           className="text-7xl
-        mb-6 text-blue-500 mt-12 font-extrabold"
+        mb-6 text-black-500 mt-12 font-extrabold"
         >
           My Wallet Overview
 

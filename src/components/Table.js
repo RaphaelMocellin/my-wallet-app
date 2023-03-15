@@ -51,8 +51,8 @@ class Table extends Component {
                         onClick={ () => dispatch(expenseEditor(exp.id)) }
                         data-testid="edit-btn"
                         className="bg-green-500 p-2 m-2
-                        rounded-lg drop-shadow-xl
-                        hover:bg-green-800 hover:text-white border border-black"
+                        rounded-lg font-bold drop-shadow-xl
+                        hover:bg-green-800 hover:text-white border-black"
                       >
                         Edit
                       </button>
@@ -69,8 +69,8 @@ class Table extends Component {
                         } }
                         data-testid="delete-btn"
                         className="bg-red-500 p-2 mx-2
-                        rounded-lg drop-shadow-xl
-                        hover:bg-red-800 hover:text-white border border-black"
+                        rounded-lg drop-shadow-xl font-bold
+                        hover:bg-red-800 hover:text-white border-black"
                       >
                         Deletar
                       </button>

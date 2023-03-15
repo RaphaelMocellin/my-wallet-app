@@ -88,7 +88,10 @@ class WalletForm extends Component {
           });
         } }
       >
-        <label htmlFor="expenseValue">
+        <label
+          htmlFor="expenseValue"
+          className="font-semibold"
+        >
           Valor:
           <input
             id="expenseValue"
@@ -100,7 +103,10 @@ class WalletForm extends Component {
             className="bg-black rounded text-white  mt-1 m-2"
           />
         </label>
-        <label htmlFor="expenseDescription">
+        <label
+          htmlFor="expenseDescription"
+          className="font-semibold"
+        >
           Descrição:
           <input
             id="expenseDescription"
@@ -112,7 +118,10 @@ class WalletForm extends Component {
             className="bg-black rounded text-white  mt-1 m-2"
           />
         </label>
-        <label htmlFor="expenseCurrency">
+        <label
+          htmlFor="expenseCurrency"
+          className="font-semibold"
+        >
           Moeda:
           <select
             id="expenseCurrency"
@@ -129,7 +138,10 @@ class WalletForm extends Component {
             }
           </select>
         </label>
-        <label htmlFor="expenseMethod">
+        <label
+          htmlFor="expenseMethod"
+          className="font-semibold"
+        >
           Método de Pagamento:
           <select
             id="expenseMethod"
@@ -144,7 +156,10 @@ class WalletForm extends Component {
             <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
-        <label htmlFor="expenseTag">
+        <label
+          htmlFor="expenseTag"
+          className="font-semibold"
+        >
           Tag:
           <select
             id="expenseTag"
@@ -177,9 +192,9 @@ class WalletForm extends Component {
             )
             : (
               <button
-                className="bg-blue-500 p-3
+                className="bg-black p-3 text-white
               rounded-lg drop-shadow-xl ml-6 font-semibold
-            hover:bg-blue-800 hover:text-white"
+            hover:bg-white hover:text-black hover:border-2 hover:border-black"
                 type="submit"
               >
                 Adicionar Despesa
