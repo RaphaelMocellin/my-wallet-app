@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
 import { expenseEditProtocol, fetchCurrencies, fetchExpense } from '../redux/actions';
 
 class WalletForm extends Component {
@@ -58,6 +59,13 @@ class WalletForm extends Component {
       this.setState({
         expenseValue: '',
         expenseDescription: '',
+      });
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Expense Saved',
+        showConfirmButton: false,
+        timer: 1500,
       });
     };
 
@@ -189,7 +197,7 @@ WalletForm.propTypes = {
   currencies: PropTypes.arrayOf(String).isRequired,
   expenses: PropTypes.arrayOf(Object).isRequired,
   editor: PropTypes.bool.isRequired,
-  idToEdit: PropTypes.number.isRequired,
+  idToEdit: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export const SUBMIT_EMAIL = 'SUBMIT_EMAIL';
 export const CURRENCIES_REQUEST_SUCCESSFUL = 'CURRENCIES_REQUEST_SUCCESSFUL';
 export const EXPENSE_REQUEST_SUCCESSFUL = 'EXPENSE_REQUEST_SUCCESSFUL';
@@ -40,11 +42,10 @@ const fetchExpense = (expenseInfo) => async (dispatch) => {
     expenseDescription,
     expenseCurrency,
     expenseMethod,
-    expenseTag,
-    expenses } = expenseInfo;
+    expenseTag } = expenseInfo;
 
   const newExpense = {
-    id: expenses.length,
+    id: uuidv4(),
     value: expenseValue,
     description: expenseDescription,
     currency: expenseCurrency,
